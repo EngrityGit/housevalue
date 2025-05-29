@@ -1,0 +1,10 @@
+{
+  "name": "homevalue",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "apps/client",
+    "apps/server",
+    "apps/shared"
+  ]
+}
