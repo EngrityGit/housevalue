@@ -1,9 +1,12 @@
+import dotenv from "dotenv";
+dotenv.config();
 import express from "express";
 import cors from "cors";
-import dotenv from "dotenv";
-import addressRoutes from "./routes/address";
 
-dotenv.config();
+import addressRoutes from "./routes/address";
+import leadRoutes from "./routes/leads";
+
+
 const allowedOrigins = [process.env.FRONTEND_URL || "http://localhost:5173"];
 const app = express();
 const PORT = process.env.PORT || 4000;
@@ -16,6 +19,7 @@ app.use(
 app.use(express.json());
 
 app.use("/api/address", addressRoutes);
+app.use("/api/leads", leadRoutes);
 
 app.get("/", (_, res) => {
   res.send("Engrity AI server is running");
