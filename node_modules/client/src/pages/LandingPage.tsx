@@ -15,13 +15,16 @@ export default function LandingPage() {
   const setData = useWizardStore((state) => state.setData);
   const suggestionsRef = useRef<HTMLUListElement>(null);
 
+  const BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
+
   const fetchSuggestions = debounce(async (query: string) => {
     if (!query.trim()) {
       setSuggestions([]);
       return;
     }
     try {
-      const res = await axios.get("/api/address/autocomplete", {
+      const res = await axios.get(`${BASE_URL}/api/address/autocomplete`, {
         params: { q: query },
       });
       setSuggestions(res.data);
@@ -54,7 +57,7 @@ export default function LandingPage() {
 
   const validateAddressWithGoogle = async (placeId: string) => {
     try {
-      const res = await axios.get("/api/address/validate", {
+      const res = await axios.get(`${BASE_URL}/api/address/validate`, {
         params: { placeId },
       });
       console.log("Validation result:", res.data);
