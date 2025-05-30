@@ -1,4 +1,4 @@
-import express, { Request, Response } from "express";
+import express, { Request, Response, RequestHandler } from "express";
 import { createClient } from "@supabase/supabase-js";
 import OpenAI from "openai";
 import { Resend } from "resend";
@@ -16,7 +16,8 @@ const openai = new OpenAI({
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
-router.post("/", async (req: Request, res: Response) => {
+// Define the route handler with proper typing
+const createLead: RequestHandler = async (req: Request, res: Response): Promise<void> => {
   try {
     const {
       address,
@@ -38,7 +39,8 @@ router.post("/", async (req: Request, res: Response) => {
       !address || !firstName || !lastName || !email ||
       !phone || consent === undefined
     ) {
-      return res.status(400).json({ error: "Missing required fields or consent" });
+      res.status(400).json({ error: "Missing required fields or consent" });
+      return;
     }
 
     // Check if lead with this email already exists
@@ -49,12 +51,14 @@ router.post("/", async (req: Request, res: Response) => {
     //   .single();
 
     // if (fetchError && fetchError.code !== "PGRST116") { // PGRST116 = no rows found, safe to ignore
-    //   return res.status(500).json({ error: fetchError.message });
+    //   res.status(500).json({ error: fetchError.message });
+    //   return;
     // }
 
     // if (existingLead) {
     //   // Lead already exists, do NOT update, return conflict error or just inform user
-    //   return res.status(409).json({ error: "Lead with this email already exists." });
+    //   res.status(409).json({ error: "Lead with this email already exists." });
+    //   return;
     // }
 
     // Insert new lead since none found
@@ -78,7 +82,8 @@ router.post("/", async (req: Request, res: Response) => {
       .select();
 
     if (error) {
-      return res.status(500).json({ error: error.message });
+      res.status(500).json({ error: error.message });
+      return;
     }
 
     // Generate AI estimation prompt
@@ -147,11 +152,13 @@ Provide a short, professional 2-3 sentence summary with a price range. Keep it r
       `,
     });
 
-    return res.status(201).json({ message: "Lead created and email sent successfully!" });
+    res.status(201).json({ message: "Lead created and email sent successfully!" });
   } catch (err) {
     console.error("Server Error:", err);
-    return res.status(500).json({ error: "Internal Server Error" });
+    res.status(500).json({ error: "Internal Server Error" });
   }
-});
+};
+
+router.post("/", createLead);
 
 export default router;

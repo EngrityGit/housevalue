@@ -19,10 +19,11 @@ app.use(
 app.use(express.json());
 
 app.use("/api/address", addressRoutes);
+
 app.use("/api/leads", leadRoutes);
 
 app.get("/", (_, res) => {
-  res.send("Engrity AI server is running");
+  res.send("Engrity server is running");
 });
 
 // Optional: catch-all and error handling
