@@ -4,11 +4,15 @@ import dotenv from "dotenv";
 import addressRoutes from "./routes/address";
 
 dotenv.config();
-
+const allowedOrigins = [process.env.FRONTEND_URL || "http://localhost:5173"];
 const app = express();
 const PORT = process.env.PORT || 4000;
 
-app.use(cors());
+app.use(
+  cors({
+    origin: allowedOrigins,
+  })
+);
 app.use(express.json());
 
 app.use("/api/address", addressRoutes);
