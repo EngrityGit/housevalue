@@ -9,7 +9,7 @@ router.get(
     const query = req.query.q as string;
     const langleyLat = 49.100376;
     const langleyLng = -122.673058;
-    const langleyRadiusMeters = 10000;
+    const langleyRadiusMeters = 1000;
 
     if (!query || query.trim().length === 0) {
       return res.status(400).json({ error: "Query parameter 'q' is required." });
