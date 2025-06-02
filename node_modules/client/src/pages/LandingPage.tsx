@@ -134,7 +134,7 @@ export default function LandingPage() {
               setAddress(e.target.value);
               setSelectedPlaceId(null); // clear placeId when typing manually
             }}
-            className="flex-grow px-5 py-4 rounded-lg border border-gray-300 focus:outline-none focus:ring-4 focus:ring-primaryBlue text-lg transition-shadow duration-300"
+            className="flex-grow px-5 py-4 rounded-lg border border-gray-300 focus:outline-none focus:ring-4 focus:ring-deepGreen/60 text-lg transition-shadow duration-300"
             disabled={loading}
             autoComplete="off"
             aria-autocomplete="list"
@@ -156,7 +156,7 @@ export default function LandingPage() {
                   key={i}
                   role="option"
                   tabIndex={0}
-                  className="px-4 py-2 hover:bg-primaryBlue hover:text-blue-400 cursor-pointer"
+                  className="px-4 py-2 hover:bg-deepGreen hover:text-lemonYellow cursor-pointer"
                   onClick={() => {
                     setAddress(s.displayName.trim());
                     setSelectedPlaceId(s.placeId);
@@ -179,8 +179,8 @@ export default function LandingPage() {
 
           <button
             type="submit"
-            className={`bg-blue-700 text-white py-4 px-6 rounded-lg font-semibold shadow-md transition-colors duration-300
-              ${loading ? "opacity-50 cursor-not-allowed" : "hover:bg-blue-800"}`}
+            className={`bg-deepGreen text-lemonYellow py-4 px-6 rounded-lg font-semibold shadow-md transition-colors duration-300
+              ${loading ? "opacity-50 cursor-not-allowed" : "hover:bg-lemonYellow hover:text-deepGreen"}`}
             disabled={loading}
           >
             {loading ? "Processing..." : "Find Out"}

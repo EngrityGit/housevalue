@@ -10,6 +10,10 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        deepGreen: "#132b09",
+        lemonYellow: "#e1f340",
+      
+
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
