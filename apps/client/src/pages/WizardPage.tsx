@@ -8,6 +8,8 @@ import { Input } from "@/components/ui/input"
 import { Checkbox } from "@/components/ui/checkbox"
 import { useWizardStore } from "@/store/wizardStore"
 import { toast } from "react-hot-toast"
+import emailjs from "@emailjs/browser"
+
 
 const steps = [
   {
@@ -58,6 +60,10 @@ const steps = [
 ]
 
 const primaryBlue = "#0071fe"
+
+const SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+const TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+const PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 
 export default function WizardPage() {
   const step = useWizardStore((state) => state.step)
@@ -178,6 +184,24 @@ export default function WizardPage() {
         throw new Error(errData.error || "Failed to send report request")
       }
 
+          const templateParams = {
+      address,
+      firstName,
+      lastName,
+      email,
+      phone,
+      bedrooms,
+      bathrooms,
+      basement,
+      basementStatus,
+      sellingTimeline,
+      propertyType,
+      unitNumber: unitNumber || "N/A",
+    }
+
+    emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams, PUBLIC_KEY);
+
+
       toast.success("Report request sent! We'll email you soon.")
       navigate("/confirmation")
     } catch (error: any) {
@@ -187,6 +211,8 @@ export default function WizardPage() {
       setLoading(false)
     }
   }
+
+
 
   const variants = {
     initial: { opacity: 0, x: 80, scale: 0.95 },
