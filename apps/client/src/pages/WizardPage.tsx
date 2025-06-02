@@ -212,8 +212,8 @@ export default function WizardPage() {
               transition={{ duration: 0.3 }}
             >
               <h2
-                className="text-3xl font-bold mb-6"
-                style={{ color: primaryBlue }}
+                className="text-3xl font-bold mb-6 px-2 text-deepGreen  bg-lemonYellow rounded-lg"
+               
               >
                 {steps[step - 1].question}
               </h2>
@@ -226,8 +226,8 @@ export default function WizardPage() {
                   onChange={(e) =>
                     handleOptionSelect(steps[step - 1].id, e.target.value)
                   }
-                  placeholder="Enter here"
-                  className="text-lg p-4 border border-gray-300 rounded-lg"
+                  placeholder="Enter your unit number here"
+                  className="text-lg p-4 border border-deepGreen/60 rounded-lg"
                 />
               ) : (
                 <RadioGroup
@@ -244,12 +244,12 @@ export default function WizardPage() {
                       htmlFor={option}
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
-                      className="flex items-center space-x-4 cursor-pointer rounded-lg p-4 border border-gray-300 hover:border-[#0071fe] transition"
+                      className="flex items-center space-x-4 cursor-pointer rounded-lg p-4 border border-gray-300 hover:border-deepGreen transition"
                     >
                       <RadioGroupItem
                         value={option}
                         id={option}
-                        className="h-5 w-5 border border-gray-400 checked:border-[#0071fe] checked:bg-[#0071fe]"
+                        className="h-5 w-5 border border-gray-400 checked:border-lemonYellow checked:bg-lemonYellow"
                       />
                       <span className="text-lg font-medium">{option}</span>
                     </motion.label>
@@ -262,7 +262,7 @@ export default function WizardPage() {
                   variant="outline"
                   onClick={prevStep}
                   disabled={step === 1 || loading}
-                  className="border-black text-black hover:bg-black hover:text-white transition"
+                  className="border-black text-black hover:bg-deepGreen hover:text-lemonYellow transition"
                   aria-disabled={step === 1 || loading}
                 >
                   Previous
@@ -274,7 +274,7 @@ export default function WizardPage() {
                       : toast.error("Please complete the field.")
                   }
                   disabled={!isStepValid() || loading}
-                  className="bg-blue-400 text-white hover:bg-blue-600 shadow-lg transition disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="bg-deepGreen text-white hover:bg-lemonYellow hover:text-deepGreen shadow-lg transition disabled:opacity-50 disabled:cursor-not-allowed"
                   aria-disabled={!isStepValid() || loading}
                 >
                   Next
@@ -295,8 +295,8 @@ export default function WizardPage() {
               className="space-y-6"
               aria-label="Basic information form"
             >
-              <h2 className="text-3xl font-bold mb-6" style={{ color: primaryBlue }}>
-                Basic Information
+              <h2 className="text-3xl font-bold mb-6 px-2 text-deepGreen  bg-lemonYellow rounded-lg">
+                Basic Informations
               </h2>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
@@ -379,7 +379,7 @@ export default function WizardPage() {
                   variant="outline"
                   onClick={prevStep}
                   disabled={loading}
-                  className="border-black text-black hover:bg-black hover:text-white transition"
+                  className="border-black text-black hover:bg-deepGreen hover:text-lemonYellow  transition"
                 >
                   Previous
                 </Button>
@@ -387,7 +387,7 @@ export default function WizardPage() {
                 <Button
                   type="submit"
                   disabled={loading}
-                  className="bg-blue-400 text-white hover:bg-blue-600 shadow-lg transition disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="bg-deepGreen text-white hover:bg-lemonYellow hover:text-deepGreen  shadow-lg transition disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {loading ? "Submitting..." : "Submit"}
                 </Button>
