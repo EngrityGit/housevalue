@@ -137,7 +137,7 @@ const createLead: RequestHandler = async (req: Request, res: Response): Promise<
       template_id: process.env.EMAILJS_TEMPLATE_ID,
       user_id: process.env.EMAILJS_USER_ID, // public key
       template_params: {
-        to_email: "selva2nadar@gmail.com", // Sending to
+        to_email: "prathik.jeyakumar@engrity.com", // Sending to
         from_name: `${firstName} ${lastName}`,
         message_html: emailHtml,
       },
