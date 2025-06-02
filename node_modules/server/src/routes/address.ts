@@ -7,8 +7,8 @@ router.get(
   "/autocomplete",
   (async (req, res, next) => {
     const query = req.query.q as string;
-    const langleyLat = 49.1044;
-    const langleyLng = -122.6600;
+    const langleyLat = 49.100376;
+    const langleyLng = -122.673058;
     const langleyRadiusMeters = 10000;
 
     if (!query || query.trim().length === 0) {
