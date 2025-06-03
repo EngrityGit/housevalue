@@ -80,7 +80,7 @@ export function Footer() {
         >
           Terms of Service
         </button>
-        <span className="text-gray-400">&copy; {new Date().getFullYear()} House Value</span>
+        <span className="text-gray-400">&copy; {new Date().getFullYear()} Home Value Langley</span>
       </footer>
 
       <AnimatePresence>
