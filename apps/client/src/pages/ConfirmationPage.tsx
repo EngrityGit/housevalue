@@ -80,7 +80,7 @@ export default function ConfirmationPage() {
           </motion.div>
         </div>
 
-        <h2 className="text-3xl font-semibold mb-4 text-primaryBlue">
+        <h2 className="text-3xl font-semibold mb-4 text-deepGreen">
            Submission Received Successfully
         </h2>
 
@@ -96,7 +96,7 @@ export default function ConfirmationPage() {
         <button
           onClick={() => {reset();  navigate("/")}}
           aria-label="Back to Home"
-          className="bg-deepGreen text-lemonYellow py-3 px-8 rounded-lg font-semibold shadow-md hover:bg-lemonYellow hover:text-deepGreen transition-colors duration-300"
+          className="bg-carbonGray text-lemonYellow py-3 px-8 rounded-lg font-semibold shadow-md hover:bg-brightOrange hover:text-white transition-colors duration-300"
         >
           Back to Home
         </button>

@@ -107,7 +107,7 @@ export default function LandingPage() {
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="text-5xl font-extrabold mb-4 text-primaryBlue text-center leading-tight"
+          className="text-5xl text-brightOrange font-extrabold mb-4 text-primaryBlue text-center leading-tight"
         >
           Find Your Home’s Value
         </motion.h1>
@@ -116,7 +116,7 @@ export default function LandingPage() {
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="text-lg mb-10 text-gray-700 text-center max-w-md"
+          className="text-lg mb-10 text-carbonGray text-center max-w-md"
         >
           Enter your property address below to get an instant estimate of your home’s worth.
         </motion.p>
@@ -134,7 +134,7 @@ export default function LandingPage() {
               setAddress(e.target.value);
               setSelectedPlaceId(null); // clear placeId when typing manually
             }}
-            className="flex-grow px-5 py-4 rounded-lg border border-gray-300 focus:outline-none focus:ring-4 focus:ring-deepGreen/60 text-lg transition-shadow duration-300"
+            className="flex-grow px-5 py-4 rounded-lg border border-gray-300 focus:outline-none focus:ring-4 focus:ring-brightOrange/60 text-lg transition-shadow duration-300"
             disabled={loading}
             autoComplete="off"
             aria-autocomplete="list"
@@ -156,7 +156,7 @@ export default function LandingPage() {
                   key={i}
                   role="option"
                   tabIndex={0}
-                  className="px-4 py-2 hover:bg-deepGreen hover:text-lemonYellow cursor-pointer"
+                  className="px-4 py-2 hover:bg-carbonGray hover:text-brightOrange cursor-pointer"
                   onClick={() => {
                     setAddress(s.displayName.trim());
                     setSelectedPlaceId(s.placeId);
@@ -179,8 +179,8 @@ export default function LandingPage() {
 
           <button
             type="submit"
-            className={`bg-deepGreen text-lemonYellow py-4 px-6 rounded-lg font-semibold shadow-md transition-colors duration-300
-              ${loading ? "opacity-50 cursor-not-allowed" : "hover:bg-lemonYellow hover:text-deepGreen"}`}
+            className={`bg-carbonGray text-white py-4 px-6 rounded-lg font-semibold shadow-md transition-colors duration-300
+              ${loading ? "opacity-50 cursor-not-allowed" : "hover:bg-brightOrange hover:text-white"}`}
             disabled={loading}
           >
             {loading ? "Processing..." : "Find Out"}
