@@ -1,14 +1,33 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useWizardStore } from "@/store/wizardStore";
+
+
+declare global {
+  interface Window {
+    gtag?: (...args: any[]) => void;
+  }
+}
 
 export default function ConfirmationPage() {
   const navigate = useNavigate();
   const reset = useWizardStore((state) => state.reset)
 
+
   // Get email from the wizard store (assuming the email was saved in the last step)
   const email = useWizardStore((state) => state.data.email);
+
+  // ✅ Fire Google Ads Conversion once when the page is mounted
+  useEffect(() => {
+    if (typeof window !== "undefined" && typeof window.gtag === "function") {
+      window.gtag('event', 'conversion', {
+        send_to: 'AW-994805986/2LZwCLv_v9MaEOKRrtoD'
+      });
+    } else {
+      console.warn("gtag not found on window.");
+    }
+  }, []);
 
   // Pre-generate confetti colors and positions once per render
   const confetti = React.useMemo(() => 
