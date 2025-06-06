@@ -42,7 +42,7 @@ export function Header() {
           animate={{ scale: [1, 1.1, 1] }}
           transition={{ repeat: Infinity, duration: 1.5 }}
         >
-          <HelpCircle className="text-brightOrange w-6 h-6" />
+          <HelpCircle className="text-primaryBlue w-6 h-6" />
         </motion.div>
       </button>
 
@@ -53,7 +53,7 @@ export function Header() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black/50 backdrop-blur-sm flex justify-center items-center z-50"
+            className="fixed inset-0 bg-white/50 backdrop-blur-sm flex justify-center items-center z-50"
           >
             <motion.div
               ref={modalRef}
@@ -70,7 +70,7 @@ export function Header() {
                 <X className="w-5 h-5" />
               </button>
 
-              <h2 className="text-2xl font-bold text-brightOrange mb-4">How It Works</h2>
+              <h2 className="text-2xl font-bold text-primaryBlue mb-4">How It Works</h2>
 
               <ol className="list-decimal list-inside space-y-3 text-sm leading-relaxed">
                 <li>Enter your Langley or surrounding region address.</li>

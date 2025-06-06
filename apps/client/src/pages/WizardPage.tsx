@@ -15,7 +15,7 @@ const steps = [
   {
     id: "propertyType",
     question: "What type of home is it?",
-    options: ["Apartment", "Condo", "Detached House", "Townhouse", "Other"],
+    options: ["Apartment", "Condo", "Detached House", "Townhouse", "Duplex", "Others"],
   },
   {
     id: "unitNumber",
@@ -30,7 +30,7 @@ const steps = [
   {
     id: "bathrooms",
     question: "How many bathrooms does your house have?",
-    options: ["1", "2", "3", "4", "5+"],
+    options: ["1","1.5","2","2.5", "3","3.5", "4","4.5", "5+"],
   },
   {
     id: "basement",
@@ -40,7 +40,7 @@ const steps = [
   {
     id: "basementStatus",
     question: "What is the status of the basement?",
-    options: ["Finished", "Unfinished", "Partially Finished", "Don't Know"],
+    options: ["Finished", "Unfinished", "Partially Finished", "Don't Know", "Not Applicable"],
   },
   {
     id: "sellingTimeline",
@@ -59,7 +59,6 @@ const steps = [
   },
 ]
 
-const primaryBlue = "#0071fe"
 
 const SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
 const TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
@@ -224,7 +223,7 @@ export default function WizardPage() {
     <div className="min-h-screen bg-gradient-to-br from-white via-blue-50 to-white text-gray-900 flex justify-center items-center p-6">
       <div className="w-full max-w-4xl bg-white rounded-2xl shadow-2xl p-10 border border-gray-200">
         <div className="text-sm text-gray-500 mb-6 text-right">
-          Step {step} of {steps.length - 1}
+          Step {step} of {steps.length}
         </div>
 
         <AnimatePresence mode="wait" initial={false}>
@@ -238,7 +237,7 @@ export default function WizardPage() {
               transition={{ duration: 0.3 }}
             >
               <h2
-                className="text-3xl font-bold mb-6 px-2 text-white  bg-brightOrange rounded-lg"
+                className="text-3xl font-bold mb-6 px-2 text-white  bg-primaryBlue rounded-lg"
                
               >
                 {steps[step - 1].question}
@@ -253,34 +252,82 @@ export default function WizardPage() {
                     handleOptionSelect(steps[step - 1].id, e.target.value)
                   }
                   placeholder="Enter your unit number here"
-                  className="text-lg p-4 border border-deepGreen/60 rounded-lg"
+                  className="text-lg p-4 border border-primaryBlue/60 rounded-lg"
                 />
               ) : (
-                <RadioGroup
-                  aria-label={steps[step - 1].question}
-                  value={data[steps[step - 1].id] || ""}
-                  onValueChange={(value) =>
-                    handleOptionSelect(steps[step - 1].id, value)
-                  }
-                  className="space-y-4"
-                >
-                  {steps[step - 1].options?.map((option) => (
-                    <motion.label
-                      key={option}
-                      htmlFor={option}
-                      whileHover={{ scale: 1.02 }}
-                      whileTap={{ scale: 0.98 }}
-                      className="flex items-center space-x-4 cursor-pointer rounded-lg p-4 border border-gray-300 hover:border-brightOrange transition"
-                    >
-                      <RadioGroupItem
-                        value={option}
-                        id={option}
-                        className="h-5 w-5 border border-gray-400 checked:border-brightOrange checked:bg-brightOrange"
-                      />
-                      <span className="text-lg font-medium">{option}</span>
-                    </motion.label>
-                  ))}
-                </RadioGroup>
+               <RadioGroup
+  aria-label={steps[step - 1].question}
+  value={data[steps[step - 1].id] || ""}
+  onValueChange={(value) =>
+    handleOptionSelect(steps[step - 1].id, value)
+  }
+>
+  {steps[step - 1].options && steps[step - 1].options.length > 6 ? (
+    <div className="flex w-full gap-6">
+      {/* Left column */}
+      <div className="flex flex-col w-1/2 space-y-4">
+        {steps[step - 1].options.slice(0, Math.ceil(steps[step - 1].options.length / 2)).map((option) => (
+          <motion.label
+            key={option}
+            htmlFor={option}
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+            className="flex items-center space-x-4 cursor-pointer rounded-lg p-4 border border-gray-300 hover:border-primaryBlue transition"
+          >
+            <RadioGroupItem
+              value={option}
+              id={option}
+              className="h-5 w-5 border border-gray-400 checked:border-primaryBlue checked:bg-brightOrange"
+            />
+            <span className="text-lg font-medium">{option}</span>
+          </motion.label>
+        ))}
+      </div>
+
+      {/* Right column */}
+      <div className="flex flex-col w-1/2 space-y-4">
+        {steps[step - 1].options.slice(Math.ceil(steps[step - 1].options.length / 2)).map((option) => (
+          <motion.label
+            key={option}
+            htmlFor={option}
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+            className="flex items-center space-x-4 cursor-pointer rounded-lg p-4 border border-gray-300 hover:border-primaryBlue transition"
+          >
+            <RadioGroupItem
+              value={option}
+              id={option}
+              className="h-5 w-5 border border-gray-400 checked:border-primaryBlue checked:bg-brightOrange"
+            />
+            <span className="text-lg font-medium">{option}</span>
+          </motion.label>
+        ))}
+      </div>
+    </div>
+  ) : (
+    // Default: single column, full width for 6 or fewer options
+    <div className="flex flex-col w-full space-y-4">
+      {steps[step - 1].options?.map((option) => (
+        <motion.label
+          key={option}
+          htmlFor={option}
+          whileHover={{ scale: 1.02 }}
+          whileTap={{ scale: 0.98 }}
+          className="flex items-center space-x-4 cursor-pointer rounded-lg p-4 border border-gray-300 hover:border-primaryBlue transition"
+        >
+          <RadioGroupItem
+            value={option}
+            id={option}
+            className="h-5 w-5 border border-gray-400 checked:border-primaryBlue checked:bg-brightOrange"
+          />
+          <span className="text-lg font-medium">{option}</span>
+        </motion.label>
+      ))}
+    </div>
+  )}
+</RadioGroup>
+
+
               )}
 
               <div className="mt-10 flex justify-between">
@@ -288,7 +335,7 @@ export default function WizardPage() {
                   variant="outline"
                   onClick={prevStep}
                   disabled={step === 1 || loading}
-                  className="border-black text-black hover:bg-deepGreen hover:text-lemonYellow transition"
+                  className="border-black text-black hover:border-white hover:bg-brightOrange hover:text-white transition"
                   aria-disabled={step === 1 || loading}
                 >
                   Previous
@@ -300,7 +347,7 @@ export default function WizardPage() {
                       : toast.error("Please complete the field.")
                   }
                   disabled={!isStepValid() || loading}
-                  className="bg-carbonGray text-white hover:bg-brightOrange hover:text-white shadow-lg transition disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="bg-blue-400 text-white hover:bg-primaryBlue hover:text-white shadow-lg transition disabled:opacity-50 disabled:cursor-not-allowed"
                   aria-disabled={!isStepValid() || loading}
                 >
                   Next
@@ -321,7 +368,7 @@ export default function WizardPage() {
               className="space-y-6"
               aria-label="Basic information form"
             >
-              <h2 className="text-3xl font-bold mb-6 px-2 text-white  bg-brightOrange rounded-lg">
+              <h2 className="text-3xl font-bold mb-6 px-2 text-white  bg-primaryBlue rounded-lg">
                 Basic Informations
               </h2>
 
@@ -405,7 +452,7 @@ export default function WizardPage() {
                   variant="outline"
                   onClick={prevStep}
                   disabled={loading}
-                  className=" border-black text-black hover:bg-deepGreen hover:text-lemonYellow  transition"
+                  className=" border-black text-black hover:border-white hover:bg-brightOrange hover:text-white  transition"
                 >
                   Previous
                 </Button>
@@ -413,7 +460,7 @@ export default function WizardPage() {
                 <Button
                   type="submit"
                   disabled={loading}
-                  className="bg-carbonGray text-white hover:bg-brightOrange hover:text-white  shadow-lg transition disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="bg-blue-400 text-white hover:bg-primaryBlue hover:text-white  shadow-lg transition disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {loading ? "Submitting..." : "Submit"}
                 </Button>

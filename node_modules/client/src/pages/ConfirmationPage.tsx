@@ -99,14 +99,14 @@ export default function ConfirmationPage() {
           </motion.div>
         </div>
 
-        <h2 className="text-3xl font-semibold mb-4 text-deepGreen">
+        <h2 className="text-3xl font-semibold mb-4 text-primaryBlue">
            Submission Received Successfully
         </h2>
 
         <p className="text-gray-700 mb-8">
           A professional realtor will reach out to you via{" "}
           <span className="font-medium">{email ?? "your email"}</span> shortly.
-            If you have any questions, you can consult with them directly.
+            If you have any questions, you can consult with the realtor directly.
           <br />
         <br />
         Thank you!
@@ -115,7 +115,7 @@ export default function ConfirmationPage() {
         <button
           onClick={() => {reset();  navigate("/")}}
           aria-label="Back to Home"
-          className="bg-carbonGray text-lemonYellow py-3 px-8 rounded-lg font-semibold shadow-md hover:bg-brightOrange hover:text-white transition-colors duration-300"
+          className="bg-primaryBlue text-white py-3 px-8 rounded-lg font-semibold shadow-md hover:bg-brightOrange hover:text-white transition-colors duration-300"
         >
           Back to Home
         </button>

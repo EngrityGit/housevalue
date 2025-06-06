@@ -107,7 +107,7 @@ export default function LandingPage() {
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="text-5xl text-brightOrange font-extrabold mb-4 text-primaryBlue text-center leading-tight"
+          className="text-5xl text-brightOrange font-extrabold mb-4 text-center leading-tight"
         >
           Find Your Home’s Value
         </motion.h1>
@@ -156,7 +156,7 @@ export default function LandingPage() {
                   key={i}
                   role="option"
                   tabIndex={0}
-                  className="px-4 py-2 hover:bg-carbonGray hover:text-brightOrange cursor-pointer"
+                  className="px-4 py-2 hover:bg-primaryBlue hover:text-white cursor-pointer"
                   onClick={() => {
                     setAddress(s.displayName.trim());
                     setSelectedPlaceId(s.placeId);
@@ -179,7 +179,7 @@ export default function LandingPage() {
 
           <button
             type="submit"
-            className={`bg-carbonGray text-white py-4 px-6 rounded-lg font-semibold shadow-md transition-colors duration-300
+            className={`bg-primaryBlue text-white py-4 px-6 rounded-lg font-semibold shadow-md transition-colors duration-300
               ${loading ? "opacity-50 cursor-not-allowed" : "hover:bg-brightOrange hover:text-white"}`}
             disabled={loading}
           >
